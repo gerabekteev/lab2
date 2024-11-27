@@ -1,16 +1,26 @@
-# This is a sample Python script.
+from tkinter import *
+from tkinter import filedialog as fd
+import pygame as pg
+pg.mixer.init()
+root = Tk()
+def find_music():
+    file_name = fd.askopenfilename()
+    pg.mixer.music.load((file_name))
+    pg.mixer.music.play()
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+root["bg"] = "#ffffff"
+root.title("mp3 player")
+# root.wm_attributes('-alpha',0.7)
+root.geometry("800x450")
+root.resizable(width=True, height=True)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
+frame = Frame(root, bg="orange")
+frame.place(relx=0.15, rely=0.15, relwidth=0.7, relheight=0.7)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+title = Label(frame, text="выбири файл", bg="orange", font=40)
+title.pack()
+btn = Button(frame,text="файл",bg="white",command = find_music)
+btn.pack()
+root.mainloop()
